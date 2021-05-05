@@ -1,11 +1,12 @@
 from django.db import models
 
-class Book(models.Model):
-    title = models.CharField(max_length=100),
-    author = models.CharField(max_length=50)
+class Teacher(models.Model):
+    teacher_id = models.IntegerField(primarykey = True),
+    teacher_name = models.CharField(max_length=100)
 
-    @classmethod
-    def create(cls, title, author):
-        book = cls(title=title, author = author)
-        return book
 
+
+class Course(models.Model):
+    course_id = models.IntegerField(rimarykey = True),
+    course_name = models.CharField(max_length=200),
+    teacher_id = models.ForeignKey(Teacher)

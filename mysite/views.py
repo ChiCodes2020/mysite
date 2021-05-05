@@ -1,12 +1,12 @@
 from django.http import HttpResponse
-from django.template import loader
 from django.shortcuts import render
+from app.models import Teacher
 
-# view using loader()
-def index(request):
-    template = loader.get_template('index.html')
-    return HttpResponse(template.render())
+def listing(request):
+    data = {
+        "teachers": Teacher.objects.all(),
+    }
 
-# view using render()
-# def index(request):
-#     return render(request, 'index.html')
+    # here we're passing the data to our template 
+    # we can use tags in our template to display our data
+    return render(request, "index.html", data)
